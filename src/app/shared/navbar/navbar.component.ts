@@ -19,5 +19,9 @@ export class NavbarComponent {
         { label: 'Crear usuario', path: '/usuarios/nuevo' },
       ],
     },
+    {
+      label: 'Cuentas',
+      path: '/cuentas',
+    },
   ];
 }

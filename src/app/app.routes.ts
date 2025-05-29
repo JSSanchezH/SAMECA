@@ -3,6 +3,7 @@ import { HomeComponent } from './views/home/home.component';
 import { DocumentacionComponent } from './views/documentacion/documentacion.component';
 import { UsuarioListComponent } from './views/usuarios/usuario-list/usuario-list.component';
 import { UsuarioFormComponent } from './views/usuarios/nuevos/usuario-form/usuario-form.component';
+import { CuentaListComponent } from './views/cuentas/cuenta-list/cuenta-list.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, title: 'Inicio' },
@@ -13,4 +14,5 @@ export const routes: Routes = [
   },
   { path: 'usuarios', component: UsuarioListComponent, title: 'Usuarios' },
   { path: 'usuarios/nuevo', component: UsuarioFormComponent },
+  { path: 'cuentas', component: CuentaListComponent },
 ];
