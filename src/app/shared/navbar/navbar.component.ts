@@ -23,5 +23,9 @@ export class NavbarComponent {
       label: 'Cuentas',
       path: '/cuentas',
     },
+    {
+      label: 'Transferencias',
+      path: '/transferencias',
+    },
   ];
 }

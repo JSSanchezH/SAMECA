@@ -4,6 +4,7 @@ import { DocumentacionComponent } from './views/documentacion/documentacion.comp
 import { UsuarioListComponent } from './views/usuarios/usuario-list/usuario-list.component';
 import { UsuarioFormComponent } from './views/usuarios/nuevos/usuario-form/usuario-form.component';
 import { CuentaListComponent } from './views/cuentas/cuenta-list/cuenta-list.component';
+import { TransferenciaComponent } from './views/transferencias/transferencia/transferencia.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, title: 'Inicio' },
@@ -15,4 +16,5 @@ export const routes: Routes = [
   { path: 'usuarios', component: UsuarioListComponent, title: 'Usuarios' },
   { path: 'usuarios/nuevo', component: UsuarioFormComponent },
   { path: 'cuentas', component: CuentaListComponent },
+  { path: 'transferencias', component: TransferenciaComponent },
 ];

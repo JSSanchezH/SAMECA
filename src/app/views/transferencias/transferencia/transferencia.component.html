@@ -1,0 +1,29 @@
+<section class="transferencia-container">
+  <div class="form-wrapper">
+    <h1>Crear Transferencia</h1>
+
+    <form [formGroup]="form" (ngSubmit)="enviar()">
+      <label>
+        Cuenta Origen:
+        <input formControlName="cuentaOrigen" type="text" />
+      </label>
+
+      <label>
+        Cuenta Destino:
+        <input formControlName="cuentaDestino" type="text" />
+      </label>
+
+      <label>
+        Monto:
+        <input formControlName="monto" type="number" />
+      </label>
+
+      <label>
+        Descripción (opcional):
+        <input formControlName="descripcion" type="text" />
+      </label>
+
+      <button type="submit" [disabled]="form.invalid">Transferir</button>
+    </form>
+  </div>
+</section>
