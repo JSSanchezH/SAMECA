@@ -20,11 +20,29 @@ export class HomeComponent {
   ];
 
   tecnologias = [
-    'Autenticación biométrica (MFA)',
-    'Encriptación de datos (TLS 1.2+, AES-256)',
-    'Backend: Java + Spring Boot (microservicios)',
-    'Frontend: Angular (PWA)',
-    'Base de datos: PostgreSQL',
-    'Despliegue: Docker, NGINX',
+    {
+      nombre: 'Autenticación biométrica (MFA)',
+      url: 'https://developer.android.com/training/sign-in/biometric-auth',
+    },
+    {
+      nombre: 'Encriptación de datos (TLS 1.2+, AES-256)',
+      url: 'https://www.postgresql.org/docs/current/encryption-options.html',
+    },
+    {
+      nombre: 'Backend: Java + Spring Boot (microservicios)',
+      url: 'https://spring.io/projects/spring-boot',
+    },
+    {
+      nombre: 'Frontend: Angular (PWA)',
+      url: 'https://angular.io/guide/service-worker-intro',
+    },
+    {
+      nombre: 'Base de datos: PostgreSQL',
+      url: 'https://www.postgresql.org/docs/',
+    },
+    {
+      nombre: 'Despliegue: Docker, NGINX',
+      url: 'https://docs.docker.com/get-started/overview/',
+    },
   ];
 }

@@ -89,3 +89,18 @@
     padding: 0.6rem 1.5rem;
   }
 }
+
+.tech li a {
+  color: #1f2937;
+  text-decoration: none;
+  font-weight: 500;
+  display: block;
+  padding: 0.75rem;
+  border-radius: 8px;
+  background-color: #e0e7ff;
+  transition: background-color 0.3s ease;
+}
+
+.tech li a:hover {
+  background-color: #c7d2fe;
+}

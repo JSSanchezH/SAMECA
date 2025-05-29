@@ -19,7 +19,11 @@
 <section class="tech" *ngIf="tecnologias.length">
   <h2>Tecnología y Seguridad</h2>
   <ul>
-    <li *ngFor="let tech of tecnologias">{{ tech }}</li>
+    <li *ngFor="let tech of tecnologias">
+      <a [href]="tech.url" target="_blank" rel="noopener noreferrer">
+        {{ tech.nombre }}
+      </a>
+    </li>
   </ul>
 </section>
 
