@@ -11,7 +11,7 @@
       <li *ngFor="let item of seccion.items">{{ item }}</li>
     </ul>
 
-    <div class="imagenes">
+    <div class="imagenes-dos">
       <!-- Diseño Lógico -->
       <div *ngIf="seccion.disenoLogico" class="script-box left-aligned">
         <h3>Diseño Lógico</h3>
@@ -33,19 +33,30 @@
         <img [src]="img.src" [alt]="img.alt" />
         <p>{{ img.alt }}</p>
       </div>
-    </div>
+      <!-- Script SQL -->
+      <div *ngIf="seccion.script" class="script-box left-aligned">
+        <h3>Script SQL</h3>
+        <pre>{{ recortarTexto(seccion.script, 200) }}</pre>
 
-    <!-- Script SQL -->
-    <div *ngIf="seccion.script" class="script-box left-aligned">
-      <h3>Script SQL</h3>
-      <pre>{{ recortarTexto(seccion.script, 200) }}</pre>
+        <button
+          class="zoom-btn"
+          (click)="ampliarTexto(seccion.script, 'Script SQL')"
+        >
+          🔍 Ver completo
+        </button>
+      </div>
+      <!-- Auditoría -->
+      <div *ngIf="seccion.auditoria" class="script-box left-aligned">
+        <h3>Auditoría</h3>
+        <pre>{{ recortarTexto(seccion.auditoria, 200) }}</pre>
 
-      <button
-        class="zoom-btn"
-        (click)="ampliarTexto(seccion.script, 'Script SQL')"
-      >
-        🔍 Ver completo
-      </button>
+        <button
+          class="zoom-btn"
+          (click)="ampliarTexto(seccion.auditoria, 'Auditoría')"
+        >
+          🔍 Ver completo
+        </button>
+      </div>
     </div>
   </div>
 </section>

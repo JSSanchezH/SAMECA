@@ -271,6 +271,82 @@ CREATE TABLE Beneficiario (
   FOREIGN KEY (id_usuario) REFERENCES Usuario(id)
 );
       `.trim(),
+      auditoria: `
+-- ===============================
+-- Tabla: Auditoria_Usuario
+-- ===============================
+CREATE TABLE Auditoria_Usuario (
+  id_auditoria SERIAL PRIMARY KEY,
+  id_usuario VARCHAR(50),
+  accion VARCHAR(10), -- INSERT, UPDATE, DELETE
+  fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  usuario_modificador VARCHAR(100), -- Opcional: quién realizó el cambio
+  datos_anteriores TEXT,
+  datos_nuevos TEXT
+);
+
+-- ===============================
+-- Trigger: INSERT sobre Usuario
+-- ===============================
+CREATE OR REPLACE FUNCTION fn_auditoria_usuario_insert()
+RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO Auditoria_Usuario (id_usuario, accion, datos_nuevos)
+  VALUES (
+    NEW.id,
+    'INSERT',
+    CONCAT('nombre=', NEW.nombre, ', correo=', NEW.correo)
+  );
+  RETURN NEW;
+END;
+
+
+CREATE TRIGGER trg_usuario_insert
+AFTER INSERT ON Usuario
+FOR EACH ROW
+EXECUTE FUNCTION fn_auditoria_usuario_insert();
+
+-- ===============================
+-- Trigger: UPDATE sobre Usuario
+-- ===============================
+CREATE OR REPLACE FUNCTION fn_auditoria_usuario_update()
+RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO Auditoria_Usuario (id_usuario, accion, datos_anteriores, datos_nuevos)
+  VALUES (
+    OLD.id,
+    'UPDATE',
+    CONCAT('nombre=', OLD.nombre, ', correo=', OLD.correo),
+    CONCAT('nombre=', NEW.nombre, ', correo=', NEW.correo)
+  );
+  RETURN NEW;
+END;
+
+CREATE TRIGGER trg_usuario_update
+AFTER UPDATE ON Usuario
+FOR EACH ROW
+EXECUTE FUNCTION fn_auditoria_usuario_update();
+
+-- ===============================
+-- Trigger: DELETE sobre Usuario
+-- ===============================
+CREATE OR REPLACE FUNCTION fn_auditoria_usuario_delete()
+RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO Auditoria_Usuario (id_usuario, accion, datos_anteriores)
+  VALUES (
+    OLD.id,
+    'DELETE',
+    CONCAT('nombre=', OLD.nombre, ', correo=', OLD.correo)
+  );
+  RETURN OLD;
+END;
+
+CREATE TRIGGER trg_usuario_delete
+AFTER DELETE ON Usuario
+FOR EACH ROW
+EXECUTE FUNCTION fn_auditoria_usuario_delete();
+      `,
     },
   ];
 }
