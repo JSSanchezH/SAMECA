@@ -36,13 +36,13 @@
     </div>
 
     <!-- Script SQL -->
-    <div *ngIf="seccion.scriptEjemplo" class="script-box left-aligned">
+    <div *ngIf="seccion.script" class="script-box left-aligned">
       <h3>Script SQL</h3>
-      <pre>{{ recortarTexto(seccion.scriptEjemplo, 200) }}</pre>
+      <pre>{{ recortarTexto(seccion.script, 200) }}</pre>
 
       <button
         class="zoom-btn"
-        (click)="ampliarTexto(seccion.scriptEjemplo, 'Script SQL')"
+        (click)="ampliarTexto(seccion.script, 'Script SQL')"
       >
         🔍 Ver completo
       </button>

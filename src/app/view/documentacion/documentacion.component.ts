@@ -163,13 +163,112 @@ BENEFICIARIO (
   FOREIGN KEY (id_usuario) REFERENCES USUARIO(id)
 )
   `.trim(),
-      scriptEjemplo: `
+      script: `
+-- ===============================
+-- Tabla: Usuario
+-- ===============================
 CREATE TABLE Usuario (
   id VARCHAR(50) PRIMARY KEY,
   nombre VARCHAR(100),
-  correo VARCHAR(100),
+  correo VARCHAR(100) UNIQUE,
   clave VARCHAR(100),
   activo BOOLEAN
+);
+
+-- ===============================
+-- Tabla: Cuenta
+-- ===============================
+CREATE TABLE Cuenta (
+  numero VARCHAR(30) PRIMARY KEY,
+  tipo VARCHAR(50),
+  id_usuario VARCHAR(50),
+  FOREIGN KEY (id_usuario) REFERENCES Usuario(id)
+);
+
+-- ===============================
+-- Tabla: Transferencia
+-- ===============================
+CREATE TABLE Transferencia (
+  id VARCHAR(50) PRIMARY KEY,
+  fecha DATE,
+  monto DECIMAL(10,2),
+  cuentaOrigen VARCHAR(30),
+  cuentaDestino VARCHAR(30),
+  id_usuario VARCHAR(50),
+  FOREIGN KEY (cuentaOrigen) REFERENCES Cuenta(numero),
+  FOREIGN KEY (cuentaDestino) REFERENCES Cuenta(numero),
+  FOREIGN KEY (id_usuario) REFERENCES Usuario(id)
+);
+
+-- ===============================
+-- Tabla: Producto
+-- ===============================
+CREATE TABLE Producto (
+  id VARCHAR(50) PRIMARY KEY,
+  tipo VARCHAR(30), -- Puede ser 'Ahorro', 'CDAT', 'Credito'
+  saldo DECIMAL(10,2),
+  estado VARCHAR(30),
+  id_usuario VARCHAR(50),
+  FOREIGN KEY (id_usuario) REFERENCES Usuario(id)
+);
+
+-- ===============================
+-- Tabla: Ahorro
+-- ===============================
+CREATE TABLE Ahorro (
+  id VARCHAR(50) PRIMARY KEY,
+  saldo DECIMAL(10,2),
+  tasaInteres DECIMAL(5,2),
+  estado VARCHAR(30),
+  FOREIGN KEY (id) REFERENCES Producto(id)
+);
+
+-- ===============================
+-- Tabla: CDAT
+-- ===============================
+CREATE TABLE CDAT (
+  id VARCHAR(50) PRIMARY KEY,
+  montoInvertido DECIMAL(10,2),
+  plazo INT,
+  tasaInteres DECIMAL(5,2),
+  fechaVencimiento DATE,
+  FOREIGN KEY (id) REFERENCES Producto(id)
+);
+
+-- ===============================
+-- Tabla: Credito
+-- ===============================
+CREATE TABLE Credito (
+  id VARCHAR(50) PRIMARY KEY,
+  monto DECIMAL(10,2),
+  saldoPendiente DECIMAL(10,2),
+  estado VARCHAR(30),
+  FOREIGN KEY (id) REFERENCES Producto(id)
+);
+
+-- ===============================
+-- Tabla: Movimiento
+-- ===============================
+CREATE TABLE Movimiento (
+  id VARCHAR(50) PRIMARY KEY,
+  fecha DATE,
+  tipo VARCHAR(30),
+  valor DECIMAL(10,2),
+  descripcion TEXT,
+  id_producto VARCHAR(50),
+  FOREIGN KEY (id_producto) REFERENCES Producto(id)
+);
+
+-- ===============================
+-- Tabla: Beneficiario
+-- ===============================
+CREATE TABLE Beneficiario (
+  id VARCHAR(50) PRIMARY KEY,
+  nombre VARCHAR(100),
+  cuentaDestino VARCHAR(30),
+  banco VARCHAR(50),
+  id_usuario VARCHAR(50),
+  FOREIGN KEY (id_usuario) REFERENCES Usuario(id)
 );
       `.trim(),
     },
