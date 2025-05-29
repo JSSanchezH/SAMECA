@@ -22,10 +22,10 @@ jobs:
         run: npm install
 
       - name: Build Angular App 🏗️
-        run: npm run build -- --base-href=/https://github.com/JSSanchezH/SAMECA/
+        run: npm run build -- --base-href=/SAMECA/
 
       - name: Deploy to GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: dist/https://github.com/JSSanchezH/SAMECA
+          folder: dist/SAMECA
