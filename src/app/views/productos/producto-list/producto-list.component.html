@@ -1,0 +1,39 @@
+<section class="producto-list">
+  <h1>Productos Registrados</h1>
+  <p class="sub">Listado general de productos financieros de SAMECA</p>
+
+  <div class="tabla">
+    <div class="fila encabezado">
+      <span>ID</span>
+      <span>Tipo</span>
+      <span>Saldo</span>
+      <span>Estado</span>
+      <span>Usuario</span>
+    </div>
+
+    <div class="fila" *ngFor="let producto of productosPaginados">
+      <span>{{ producto.id }}</span>
+      <span>{{ producto.tipo }}</span>
+      <span>{{ producto.saldo | currency : "COP" : "symbol" : "1.0-0" }}</span>
+      <span
+        [class.activo]="producto.estado === 'Activo'"
+        [class.inactivo]="producto.estado !== 'Activo'"
+      >
+        {{ producto.estado }}
+      </span>
+      <span>{{ producto.usuario }}</span>
+    </div>
+  </div>
+
+  <div class="paginacion">
+    <button (click)="anterior()" [disabled]="paginaActual === 0">
+      Anterior
+    </button>
+    <button
+      (click)="siguiente()"
+      [disabled]="(paginaActual + 1) * porPagina >= productos.length"
+    >
+      Siguiente
+    </button>
+  </div>
+</section>

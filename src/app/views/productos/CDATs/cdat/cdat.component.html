@@ -1,0 +1,31 @@
+<section class="cdat-list">
+  <h1>Gestión de CDATs</h1>
+  <p class="sub">
+    Listado de certificados de depósito a término de los usuarios
+  </p>
+
+  <div class="tabla">
+    <div class="fila encabezado">
+      <span>ID</span>
+      <span>Monto</span>
+      <span>Plazo (días)</span>
+      <span>Tasa de Interés</span>
+      <span>Vencimiento</span>
+      <span>Usuario</span>
+    </div>
+
+    <div class="fila" *ngFor="let cdat of cdatsPaginados">
+      <span>{{ cdat.id }}</span>
+      <span>{{ cdat.monto | currency : "COP" : "symbol" : "1.0-0" }}</span>
+      <span>{{ cdat.plazo }}</span>
+      <span>{{ cdat.tasaInteres }}%</span>
+      <span>{{ cdat.fechaVencimiento }}</span>
+      <span>{{ cdat.usuario }}</span>
+    </div>
+  </div>
+
+  <div class="paginacion">
+    <button (click)="anterior()" [disabled]="!hayAnterior">Anterior</button>
+    <button (click)="siguiente()" [disabled]="!haySiguiente">Siguiente</button>
+  </div>
+</section>

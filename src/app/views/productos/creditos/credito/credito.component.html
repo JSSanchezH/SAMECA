@@ -1,0 +1,33 @@
+<section class="credito-list">
+  <h1>Gestión de Créditos</h1>
+  <p class="sub">Visualiza y administra los créditos activos de los usuarios</p>
+
+  <div class="tabla">
+    <div class="fila encabezado">
+      <span>ID</span>
+      <span>Monto Total</span>
+      <span>Saldo Pendiente</span>
+      <span>Estado</span>
+      <span>Usuario</span>
+    </div>
+
+    <div class="fila" *ngFor="let credito of creditos">
+      <span>{{ credito.id }}</span>
+      <span>{{ credito.monto | currency : "COP" : "symbol" : "1.0-0" }}</span>
+      <span>{{
+        credito.saldoPendiente | currency : "COP" : "symbol" : "1.0-0"
+      }}</span>
+      <span
+        [class.activo]="credito.estado === 'Activo'"
+        [class.inactivo]="credito.estado !== 'Activo'"
+      >
+        {{ credito.estado }}
+      </span>
+      <span>{{ credito.usuario }}</span>
+    </div>
+  </div>
+  <div class="paginacion">
+    <button (click)="anterior()" [disabled]="!hayAnterior">Anterior</button>
+    <button (click)="siguiente()" [disabled]="!haySiguiente">Siguiente</button>
+  </div>
+</section>

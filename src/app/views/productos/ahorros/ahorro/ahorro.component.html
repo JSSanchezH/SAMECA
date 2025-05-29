@@ -1,0 +1,32 @@
+<section class="ahorro-list">
+  <h1>Gestión de Ahorros</h1>
+  <p class="sub">Consulta de productos de ahorro de los usuarios</p>
+
+  <div class="tabla">
+    <div class="fila encabezado">
+      <span>ID</span>
+      <span>Saldo</span>
+      <span>Tasa de Interés</span>
+      <span>Estado</span>
+      <span>Usuario</span>
+    </div>
+
+    <div class="fila" *ngFor="let ahorro of ahorrosPaginados">
+      <span>{{ ahorro.id }}</span>
+      <span>{{ ahorro.saldo | currency : "COP" : "symbol" : "1.0-0" }}</span>
+      <span>{{ ahorro.tasaInteres }}%</span>
+      <span
+        [class.activo]="ahorro.estado === 'Activo'"
+        [class.inactivo]="ahorro.estado !== 'Activo'"
+      >
+        {{ ahorro.estado }}
+      </span>
+      <span>{{ ahorro.usuario }}</span>
+    </div>
+  </div>
+
+  <div class="paginacion">
+    <button (click)="anterior()" [disabled]="!hayAnterior">Anterior</button>
+    <button (click)="siguiente()" [disabled]="!haySiguiente">Siguiente</button>
+  </div>
+</section>

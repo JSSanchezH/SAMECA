@@ -27,5 +27,14 @@ export class NavbarComponent {
       label: 'Transferencias',
       path: '/transferencias',
     },
+    {
+      label: 'Productos',
+      sub: [
+        { label: 'Ver lista', path: '/productos' },
+        { label: 'Créditos', path: '/productos/creditos' },
+        { label: 'Ahorro', path: '/productos/ahorros' },
+        { label: 'CDATs', path: '/productos/CDATs' },
+      ],
+    },
   ];
 }
