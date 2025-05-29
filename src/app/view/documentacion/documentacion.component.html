@@ -1,0 +1,69 @@
+<section class="home-container">
+  <h1 class="title">Bienvenido al Proyecto SAMECA</h1>
+  <p class="subtitle">
+    Explora los distintos aspectos del diseño de la aplicación
+  </p>
+
+  <div class="seccion" *ngFor="let seccion of secciones">
+    <h2 class="seccion-titulo">{{ seccion.titulo }}</h2>
+
+    <ul class="item-list">
+      <li *ngFor="let item of seccion.items">{{ item }}</li>
+    </ul>
+
+    <div class="imagenes">
+      <!-- Diseño Lógico -->
+      <div *ngIf="seccion.disenoLogico" class="script-box left-aligned">
+        <h3>Diseño Lógico</h3>
+        <pre>{{ recortarTexto(seccion.disenoLogico, 200) }}</pre>
+
+        <button
+          class="zoom-btn"
+          (click)="ampliarTexto(seccion.disenoLogico, 'Diseño Lógico')"
+        >
+          🔍 Ver completo
+        </button>
+      </div>
+      <div
+        class="imagen-card"
+        *ngFor="let img of seccion.imagenes"
+        [ngClass]="{ clickable: img.alt === 'Interfaz de Usuario' }"
+        (click)="abrirImagen(img)"
+      >
+        <img [src]="img.src" [alt]="img.alt" />
+        <p>{{ img.alt }}</p>
+      </div>
+    </div>
+
+    <!-- Script SQL -->
+    <div *ngIf="seccion.scriptEjemplo" class="script-box left-aligned">
+      <h3>Script SQL</h3>
+      <pre>{{ recortarTexto(seccion.scriptEjemplo, 200) }}</pre>
+
+      <button
+        class="zoom-btn"
+        (click)="ampliarTexto(seccion.scriptEjemplo, 'Script SQL')"
+      >
+        🔍 Ver completo
+      </button>
+    </div>
+  </div>
+</section>
+<div
+  class="imagen-fullscreen"
+  *ngIf="imagenAmpliada"
+  (click)="imagenAmpliada = null"
+>
+  <img [src]="imagenAmpliada" alt="Vista Ampliada" />
+</div>
+<div
+  class="texto-fullscreen"
+  *ngIf="textoAmpliado"
+  (click)="cerrarTextoAmpliado()"
+>
+  <div class="texto-content" (click)="$event.stopPropagation()">
+    <h2>{{ textoTitulo }}</h2>
+    <pre>{{ textoAmpliado }}</pre>
+    <button (click)="cerrarTextoAmpliado()">Cerrar</button>
+  </div>
+</div>
