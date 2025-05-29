@@ -66,7 +66,7 @@ export class DocumentacionComponent {
         },
         { src: 'assets/bajo-nivel/diagrama-secuencia.png', alt: 'Secuencia' },
         {
-          src: 'assets//bajo-nivel/interfaz-usuario.png',
+          src: 'assets/bajo-nivel/interfaz-usuario.png',
           alt: 'Interfaz de Usuario',
         },
       ],

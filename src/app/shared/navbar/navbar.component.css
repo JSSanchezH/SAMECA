@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #1e293b;
+  background-color: #1f5fd5;
   color: white;
   padding: 1rem 2rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -32,4 +32,51 @@
       text-decoration: underline;
     }
   }
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-group {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  padding: 0.5rem 0;
+  list-style: none;
+  top: 100%;
+  left: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  min-width: 160px;
+  z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 0.5rem 1rem;
+}
+
+.dropdown-menu li a {
+  color: #1f2937;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  color: #4287f5;
 }

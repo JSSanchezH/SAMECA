@@ -2,8 +2,22 @@
   <div class="container">
     <span class="logo">SAMECA</span>
     <ul class="nav-links">
-      <li><a routerLink="/">Inicio</a></li>
-      <li><a routerLink="/documentacion">Entregables</a></li>
+      <li
+        *ngFor="let ruta of rutas"
+        class="dropdown"
+        [class.has-sub]="ruta.sub"
+      >
+        <a *ngIf="!ruta.sub" [routerLink]="ruta.path">{{ ruta.label }}</a>
+
+        <div *ngIf="ruta.sub" class="dropdown-group">
+          <span class="dropdown-label">{{ ruta.label }} ▼</span>
+          <ul class="dropdown-menu">
+            <li *ngFor="let sub of ruta.sub">
+              <a [routerLink]="sub.path">{{ sub.label }}</a>
+            </li>
+          </ul>
+        </div>
+      </li>
     </ul>
   </div>
 </nav>

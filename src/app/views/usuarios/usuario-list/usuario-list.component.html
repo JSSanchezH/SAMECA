@@ -1,0 +1,38 @@
+<section class="usuario-list">
+  <h1>Usuarios Registrados</h1>
+  <p class="sub">Consulta general de usuarios del sistema SAMECA</p>
+
+  <div class="tabla">
+    <div class="fila encabezado">
+      <span>ID</span>
+      <span>Nombre</span>
+      <span>Correo</span>
+      <span>Estado</span>
+    </div>
+
+    <div class="fila" *ngFor="let usuario of usuariosPaginados">
+      <span>{{ usuario.id }}</span>
+      <span>{{ usuario.nombre }}</span>
+      <span>{{ usuario.correo }}</span>
+      <span>
+        <span
+          [class.activo]="usuario.activo"
+          [class.inactivo]="!usuario.activo"
+        >
+          {{ usuario.activo ? "Activo" : "Inactivo" }}
+        </span>
+      </span>
+    </div>
+  </div>
+  <div class="paginacion">
+    <button (click)="anterior()" [disabled]="paginaActual === 0">
+      Anterior
+    </button>
+    <button
+      (click)="siguiente()"
+      [disabled]="(paginaActual + 1) * porPagina >= usuarios.length"
+    >
+      Siguiente
+    </button>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+<section class="form-container">
+  <div class="form-wrapper">
+    <h1>Crear Usuario</h1>
+
+    <form [formGroup]="form" (ngSubmit)="guardar()">
+      <label>
+        Nombre:
+        <input formControlName="nombre" type="text" />
+      </label>
+
+      <label>
+        Correo:
+        <input formControlName="correo" type="email" />
+      </label>
+
+      <label>
+        Clave:
+        <input formControlName="clave" type="password" />
+      </label>
+
+      <label class="activo-check">
+        <input formControlName="activo" type="checkbox" />
+        Usuario activo
+      </label>
+
+      <button type="submit" [disabled]="form.invalid">Guardar</button>
+    </form>
+  </div>
+</section>

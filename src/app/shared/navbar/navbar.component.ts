@@ -9,4 +9,15 @@ import { RouterLink, RouterModule } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  rutas = [
+    { label: 'Inicio', path: '/' },
+    {
+      label: 'Usuarios',
+      sub: [
+        { label: 'Ver lista', path: '/usuarios' },
+        { label: 'Crear usuario', path: '/usuarios/nuevo' },
+      ],
+    },
+  ];
+}
